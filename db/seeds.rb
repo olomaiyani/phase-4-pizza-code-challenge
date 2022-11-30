@@ -1,28 +1,38 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
-#   Character.create(name: "Luke", movie: movies.first)
-Restaurant.destroy_all
-Pizza.destroy_all
-RestaurantPizza.destroy_all
 
-5.times do
-    Restaurant.create(name:Faker::Restaurant.name, address: Faker::Address.full_address)
-end
+Restaurant.destroy_all 
+Pizza.destroy_all 
+RestaurantPizza.destroy_all 
 
-5.times do
-    ingredients = []
-    3.times do
-        ingredients << Faker::Food.ingredient
-    end
-    Pizza.create(name:ingredients[-1], ingredients: ingredients.join(", "))
-end
+# //Restaurant data 
 
-RestaurantPizza.create(restaurant_id: 1, pizza_id: 2)
-RestaurantPizza.create(restaurant_id: 1, pizza_id: 4)
-RestaurantPizza.create(restaurant_id: 2, pizza_id: 1)
-RestaurantPizza.create(restaurant_id: 2, pizza_id: 4)
-RestaurantPizza.create(restaurant_id: 3, pizza_id: 1)
+puts "Seeding restaurants..." 
+
+   h1 = Restaurant.create(name:"Weston Hotel", address: "129, Nairobi")
+   h2 = Restaurant.create(name:"Sarova Hotel", address: "23, Mara")
+   h3 = Restaurant.create(name:"Hilton Hotel", address:" 97, Nairobi" )
+   h4 = Restaurant.create(name:"68 Hotel", address: "132, Narok")
+   h5 = Restaurant.create(name:"Dallas Inn", address: "136, kisumu")
+
+puts "Seeding pizzas..." 
+
+p1 = Pizza.create(name:"Cheese",ingredients:"Butter, Wheat, Cheese")
+p2 = Pizza.create(name:"Vanilla",ingredients:"Dough, Milk, Vanilla")
+p3 = Pizza.create(name:"Strawberry",ingredients:"Butter, Tomato, Strawberry")
+p4 = Pizza.create(name:"Chocolate",ingredients:"Coconut, Milk, Chocolate")
+p5 = Pizza.create(name:'Apple',ingredients:"Mango, Wheat, Apple") 
+
+
+puts "Seeding restaurant_pizza" 
+
+RestaurantPizza.create(price:7, pizza_id:p1.id, restaurant_id:h3.id)
+RestaurantPizza.create(price:9, pizza_id:p4.id, restaurant_id:h1.id)
+RestaurantPizza.create(price:10, pizza_id:p3.id, restaurant_id:h4.id)
+RestaurantPizza.create(price:8, pizza_id:p2.id, restaurant_id:h3.id)
+RestaurantPizza.create(price:7, pizza_id:p3.id, restaurant_id:h5.id)
+RestaurantPizza.create(price:7, pizza_id:p1.id, restaurant_id:h2.id)
+RestaurantPizza.create(price:9, pizza_id:p4.id, restaurant_id:h1.id)
+RestaurantPizza.create(price:10, pizza_id:p3.id, restaurant_id:h4.id)
+RestaurantPizza.create(price:8, pizza_id:p1.id, restaurant_id:h1.id)
+RestaurantPizza.create(price:7, pizza_id:p1.id, restaurant_id:h5.id)
+
+puts "Done seeding..."

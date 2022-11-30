@@ -24,13 +24,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_30_062220) do
   end
 
   create_table "restaurants", force: :cascade do |t|
+    t.string "name"
+    t.string "address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "restaurants_pizzas", force: :cascade do |t|
-    t.integer "pizza_id"
-    t.integer "restaurant_id"
+    t.string "restaurant_id"
+    t.string "pizza_id"
     t.integer "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

@@ -1,6 +1,7 @@
 class RestaurantsController < ApplicationController
     rescue_from ActiveRecord::RecordNotFound, with: :record_not_found_method
     def index
+        restaurants = Restaurant.all 
         render json: Restaurant.all
     end
 
